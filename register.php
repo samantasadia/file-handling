@@ -15,10 +15,9 @@ th {
 
 <?php
 // define variables and set to empty values
-$fnameErr = $lnameErr = $emailErr = $genderErr =  "";
-//$websiteErr = "";
-$fname = $lname= $email = $gender = "";
-// $comment = $website = "";
+$fnameErr = $lnameErr = $emailErr = $genderErr = $remailErr = $passwordErr = $unameErr = "";
+
+$fname = $lname= $email = $gender = $remail = $uname = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["fname"])) {
@@ -32,15 +31,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $lname = test_input($_POST["lname"]);
   }
+  
   if (empty($_POST["gender"])) {
     $genderErr = "Gender is required";
   } else {
     $gender = test_input($_POST["gender"]);
   }
+  
   if (empty($_POST["email"])) {
     $emailErr = "Email is required";
   } else {
     $email = test_input($_POST["email"]);
+  }
+  
+  if (empty($_POST["uname"])) {
+    $unameErr = "Username is required";
+  } else {
+    $uname = test_input($_POST["uname"]);
+  }
+  
+  if (empty($_POST["password"])) {
+    $passwordErr = "Password is required";
+  } else {
+    $password = test_input($_POST["password"]);
+  }
+  
+  if (empty($_POST["remail"])) {
+    $remailErr = "Recovery email is required";
+  } else {
+    $remail = test_input($_POST["remail"]);
   }
   
 }
@@ -61,12 +80,12 @@ function test_input($data) {
 <table>
 <tr>
 <th><label for="fname">First Name:</label></th>
-<td><input type="text id="fname" name="fname"></td>
+<td><input type="text" id="fname" name="fname"></td>
 <td><span class="error"> * <?php echo $fnameErr;?></span></td>
 </tr>
 <tr>
 <th><label for="lname">Last Name:</label></th>
-<td><input type="text id="lname" name="lname"></td>
+<td><input type="text" id="lname" name="lname"></td>
 <td><span class="error"> * <?php echo $lnameErr;?></span></td>
 </tr>
 <tr>
@@ -87,6 +106,29 @@ function test_input($data) {
 <tr>
 </table>
 </fieldset>
+<fieldset>
+<legend>User Account Information</legend>
+<center>
+<table>
+<tr>
+<th><label for="uname">Username:</label></th>
+<td><input type="text" id="fname" name="uname"></td>
+<td><span class="error"> * <?php echo $unameErr;?></span></td>
+</tr>
+<tr>
+<th><label for="password">Password:</label></th>
+<td><input type="password" id="password" name="password"></td>
+<td><span class="error"> * <?php echo $passwordErr;?></span></td>
+</tr>
+
+<tr>
+<th><label for="remail">Recovery Email:</label></th>
+<td><input type="remail" id="remail" name="remail"></td>
+<td><span class="error"> * <?php echo $remailErr;?></span></td>
+</tr>
+<tr>
+</table>
+</fieldset>
 <input type="submit" name="submit" value="Submit">
 <input type="reset">
 </center>
@@ -102,7 +144,8 @@ if(in_array($val,$array)){
 		echo "";
 }
 else{
-	fputs($myfile,"First Name:".$fname."\n"."Last Name:".$lname."\n"."Gender:".$gender."\n"."Email:".$email."\n");
+	fputs($myfile,"---Basic Information--- \nFirst Name:".$fname."\n"."Last Name:".$lname."\n"."Gender:".$gender."\n"."Email:".$email."\n".
+					"---User Account Info--- \nUsername:".$uname."\n"."Password:".$password."\n"."Recovery email:".$remail."\n");
 }
 fclose($myfile);
 

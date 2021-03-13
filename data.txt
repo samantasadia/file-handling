@@ -1,8 +1,9 @@
-First Name:samanta
-Last Name:sadia
-Gender:female
-Email:sadia@gmail.com
-First Name:samanta
+---Basic Information--- 
+ First Name:samanta
 Last Name:sadia
 Gender:female
 Email:samantasadia1971@gmail.com
+---User Account Info--- 
+ Username:s.sadia
+Password:123456
+Recovery email:samanta@gmail.com
