@@ -81,12 +81,12 @@ function test_input($data) {
 <tr>
 <th><label for="fname">First Name:</label></th>
 <td><input type="text" id="fname" name="fname"></td>
-<td><span class="error"> * <?php echo $fnameErr;?></span></td>
+<td><span class="error"> <?php echo $fnameErr;?></span></td>
 </tr>
 <tr>
 <th><label for="lname">Last Name:</label></th>
 <td><input type="text" id="lname" name="lname"></td>
-<td><span class="error"> * <?php echo $lnameErr;?></span></td>
+<td><span class="error"> <?php echo $lnameErr;?></span></td>
 </tr>
 <tr>
 <th><label for="gender">Gender:</label></th>
@@ -96,12 +96,12 @@ function test_input($data) {
 <input type="radio" id="female" name="gender" value="female"
 <label for="female">Female</label>
 </td>
-<td><span class="error"> * <?php echo $genderErr;?></span></td>
+<td><span class="error"> <?php echo $genderErr;?></span></td>
 </tr>
 <tr>
 <th><label for="email">Email:</label></th>
 <td><input type="email" id="email" name="email"></td>
-<td><span class="error"> * <?php echo $emailErr;?></span></td>
+<td><span class="error"> <?php echo $emailErr;?></span></td>
 </tr>
 <tr>
 </table>
@@ -113,29 +113,33 @@ function test_input($data) {
 <tr>
 <th><label for="uname">Username:</label></th>
 <td><input type="text" id="fname" name="uname"></td>
-<td><span class="error"> * <?php echo $unameErr;?></span></td>
+<td><span class="error"> <?php echo $unameErr;?></span></td>
 </tr>
 <tr>
 <th><label for="password">Password:</label></th>
 <td><input type="password" id="password" name="password"></td>
-<td><span class="error"> * <?php echo $passwordErr;?></span></td>
+<td><span class="error"> <?php echo $passwordErr;?></span></td>
 </tr>
 
 <tr>
 <th><label for="remail">Recovery Email:</label></th>
 <td><input type="remail" id="remail" name="remail"></td>
-<td><span class="error"> * <?php echo $remailErr;?></span></td>
+<td><span class="error"> <?php echo $remailErr;?></span></td>
 </tr>
 <tr>
 </table>
 </fieldset>
+</center>
+<center>
+<br>
 <input type="submit" name="submit" value="Submit">
-<input type="reset">
+&nbsp;&nbsp;&nbsp;&nbsp;<a href ="/BDBooks/admin/login.php">Back<a>
 </center>
 </body>
 </html>
 
 <?php
+
 $myfile = fopen("data.txt","a") 
 	or die ("Unable to open the file");
 $array = array($fname,$lname,$gender,$email);
@@ -144,8 +148,8 @@ if(in_array($val,$array)){
 		echo "";
 }
 else{
-	fputs($myfile,"---Basic Information--- \nFirst Name:".$fname."\n"."Last Name:".$lname."\n"."Gender:".$gender."\n"."Email:".$email."\n".
-					"---User Account Info--- \nUsername:".$uname."\n"."Password:".$password."\n"."Recovery email:".$remail."\n");
+	fputs($myfile,$email."\n".$password."\n---Basic Information--- \nFirst Name: ".$fname."\n"."Last Name: ".$lname."\n"."Gender: ".$gender."\n".
+					"---User Account Info--- \nUsername: ".$uname."\n"."Password: ".$password."\n"."Recovery email: ".$remail."\n");
 }
 fclose($myfile);
 
